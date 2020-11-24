@@ -1,0 +1,26 @@
+<?php
+/** @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory */
+protected $collectionFactory;
+
+public function __construct(
+    \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $collectionFactory
+) {
+    $this->collectionFactory = $collectionFactory;
+}
+
+public function yourMethod()
+{
+    // Use factory to create a new product collection
+    $productCollection = $this->collectionFactory->create();
+    /** Apply filters here */
+    $productCollection->addAttributeToSelect('*');
+
+    $productCollection->setPageSize(10); 
+    // Don't have to do this
+    // $productCollection->load();
+
+    foreach ($productCollection as $product){
+         print_r($product->getData()); 
+    }  
+}
+?>
